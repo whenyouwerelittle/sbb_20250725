@@ -13,4 +13,9 @@ public class MainController {
         System.out.println(reMessage);
         return reMessage;
     }
+
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/question/list";
+    }
 }
