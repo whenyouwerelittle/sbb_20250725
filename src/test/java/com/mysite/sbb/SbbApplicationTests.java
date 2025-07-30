@@ -1,8 +1,9 @@
 package com.mysite.sbb;
 
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-import org.hibernate.annotations.CascadeType;
+import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.answer.AnswerRepository;
+import com.mysite.sbb.question.Question;
+import com.mysite.sbb.question.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -121,7 +122,7 @@ class SbbApplicationTests {
 
 	@Test
 	@Transactional
-	@Rollback(false)/*transactional 을 설정하게되면 테스트 종료 후 롤백되기 때문에 Rollback(false) annotation을 추가 한다*/
+	@Rollback(false)/*transactional 을 설정하게되면 테스트 종료 후 db가 롤백되기 때문에 필요하다면 Rollback(false) annotation을 추가 한다*/
 	void testJpa011() {
 
 		Optional<Question> oq = this.questionRepository.findById(2);
