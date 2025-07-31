@@ -11,3 +11,12 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {  
     Question findBySubjectAndContent(String subject, String content);
     List<Question> findBySubjectLike(String subject);
 }
+
+/*
+@Repository
+public interface QuestionServiceRepository extends JpaRepository<Question, Integer> {  // id 자료형을 선언
+    Question findById(Integer id);
+    Question findBySubject(String subject);
+    Question findBySubjectAndContent(String subject, String content);
+    List<Question> findBySubjectLike(String subject);
+}*/
