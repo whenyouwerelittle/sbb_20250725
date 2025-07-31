@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 - Integer: Primary key type (기본 키의 자료형)
 * */
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
+
 }
