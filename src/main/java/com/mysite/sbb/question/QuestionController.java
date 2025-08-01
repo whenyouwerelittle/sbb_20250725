@@ -1,4 +1,6 @@
 package com.mysite.sbb.question;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,7 @@ public class QuestionController {
     private final QuestionService questionService;
 
     //@GetMapping("/question/list")
-    @GetMapping("/list")    // url perfix
+    @GetMapping("/list")    // url prefix
     public String list(Model model) {
         List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
@@ -22,7 +24,7 @@ public class QuestionController {
     }
 
     // @GetMapping("question/detail/{id}")
-    @GetMapping(value= "/detail/{id}")  // url perfix
+    @GetMapping(value= "/detail/{id}")  // url prefix
     public String getQuestion(Model model, @PathVariable("id") Integer id) {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
@@ -33,17 +35,30 @@ public class QuestionController {
     @ResponseBody
     public String createQuestion() {
         return "전송완료";
-    }*/
+    }
+*/
 
     @GetMapping("/create")
-    public String questionCreate() {
+    public String questionCreate(QuestionForm questionForm) {
         return "question_form";
     }
 
     @PostMapping("/create")
-    public String questionCreate(@RequestParam(value="subject") String subject, @RequestParam(value="content") String content) {
-        // TODO 질문을 저장한다.
-        this.questionService.create(subject, content);
-        return "redirect:/question/list"; // 질문 저장후 질문목록으로 이동
+    public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+        this.questionService.create(questionForm.getSubject(), questionForm.getContent());
+        return "redirect:/question/list";
     }
+//
+//    @PostMapping("/create")
+//    public String questionCreate(@RequestParam(value="subject") String subject, @RequestParam(value="content") String content) {
+//        // validating
+//
+//        // db 저장
+//        this.questionService.create(subject, content);
+//        return "redirect:/question/list"; // 질문 저장후 질문목록으로 이동
+//    }
+
 }
