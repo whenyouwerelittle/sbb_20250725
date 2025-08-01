@@ -1,15 +1,5 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
-<body>
-<div class="container my-3">
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
     <table class="table">
         <thead class="table-dark">
         <tr>
@@ -29,91 +19,4 @@
         </tbody>
     </table>
 </div>
-<bR><bR><bR><hr><bR><bR><bR>
-
-
-<div class="bi bi-arrow-down-right-square-fill">
-<table>
-    <thead>
-    <tr>
-        <th>제목</th>
-        <th>작성일시</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="question, index : ${questionList}">
-        <td>
-            <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
-        </td>
-        <td th:text="${question.createDate}"></td>
-    </tr>
-    </tbody>
-</table>
-</div>
-<hr>
-<table class="table-1" style="border:1px" >
-    <thead>
-    <tr onclick="alert()">
-        <th>제목</th>
-        <th>내용</th>
-        <th>생성일시</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>
-            [[${questionList[0].subject}]]
-        </td>
-        <td>
-            [[${questionList[0].content}]]
-        </td>
-        <td>
-            [[${questionList[0].createDate}]]
-        </td>
-    </tr>
-    <tr>
-        <td th:text="${questionList[0].subject}"></td>
-        <td th:text="${questionList[0].content}"></td>
-        <td th:text="${questionList[0].createDate}"></td>
-    </tr>
-    </tbody>
-</table>
-<hr>
-<table class="table-1" style="border:1px" >
-    <thead>
-    <tr onclick="alert()">
-        <th>ID</th>
-        <th>제목</th>
-        <th>내용</th>
-        <th>생성일시</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="q : ${questionList}">
-        <td th:text="${q.id}"></td>
-        <td th:text="${q.subject}"></td>
-        <td th:text="${q.content}"></td>
-        <td th:text="${q.createDate}"></td>
-    </tr>
-    </tbody>
-</table>
-
-
-<table>
-    <thead>
-    <tr>
-        <th>제목</th>
-        <th>작성일시</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="question, index : ${questionList}">
-        <td>
-            <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
-        </td>
-        <td th:text="${question.createDate}"></td>
-    </tr>
-    </tbody>
-</table>
-</body>
 </html>
