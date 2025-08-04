@@ -44,10 +44,6 @@ public class QuestionService {
         } else {
             throw new DataNotFoundException("question not found");
         }
-        //
-
-
-
     }
     public Page<Question> getList(int page) {
         List<Sort.Order> sorts = new ArrayList<>();
