@@ -17,12 +17,24 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.mysite.sbb.question.QuestionService;
 @SpringBootTest
 class SbbApplicationTests {
 
 	@Autowired
-	private QuestionRepository questionRepository;
+	private QuestionService questionService;
 
+	@Test
+	void testJpa() {
+		for (int i = 1; i <= 300; i++) {
+			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+			String content = "내용무";
+			this.questionService.create(subject, content);
+		}
+	}
+/*
+	@Autowired
+	private QuestionRepository questionRepository;
 	@Test
 	void testJpa() {
 		Question q1 = new Question();
@@ -121,7 +133,7 @@ class SbbApplicationTests {
 
 	@Test
 	@Transactional
-	@Rollback(false)/*transactional 을 설정하게되면 테스트 종료 후 db가 롤백되기 때문에 필요하다면 Rollback(false) annotation을 추가 한다*/
+	@Rollback(false)*//*transactional 을 설정하게되면 테스트 종료 후 db가 롤백되기 때문에 필요하다면 Rollback(false) annotation을 추가 한다*//*
 	void testJpa011() {
 
 		Optional<Question> oq = this.questionRepository.findById(2);
@@ -132,7 +144,7 @@ class SbbApplicationTests {
 
 		assertEquals(1, answerList.size());
 		assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
-	}
+	}*/
 }
 /* my code
 package com.mysite.sbb;
