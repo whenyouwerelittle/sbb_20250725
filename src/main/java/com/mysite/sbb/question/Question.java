@@ -1,5 +1,5 @@
 package com.mysite.sbb.question;
-
+import com.mysite.sbb.user.SiteUser;
 import com.mysite.sbb.answer.Answer;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -28,4 +28,7 @@ public class Question {
     // @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Answer> answerList;
+
+    @ManyToOne
+    private SiteUser author;
 }

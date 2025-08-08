@@ -1,5 +1,5 @@
 package com.mysite.sbb.answer;
-
+import com.mysite.sbb.user.SiteUser;
 import com.mysite.sbb.question.Question;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,8 +27,13 @@ public class Answer {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @ManyToOne
+    private SiteUser author;
+
     private LocalDateTime createDate;
     @ManyToOne  //Entity realationship type N:1 (Answear N / Question 1) //FK 자동생성
     // @ManyToOne(fetch = FetchType.EAGER)
     private Question question;
+
+
 }

@@ -4,6 +4,7 @@ import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.answer.AnswerRepository;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
+import com.mysite.sbb.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.mysite.sbb.question.QuestionService;
 @SpringBootTest
 class SbbApplicationTests {
+
+    @Autowired
+    private UserService userService;
+
+    @Test
+    void testJpa013() {
+        userService.create("test", "test@test.com", "1234");
+    }
+
 
 	@Autowired
 	private QuestionService questionService;
