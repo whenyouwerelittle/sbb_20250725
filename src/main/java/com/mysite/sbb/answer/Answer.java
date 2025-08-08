@@ -34,6 +34,6 @@ public class Answer {
     @ManyToOne  //Entity realationship type N:1 (Answear N / Question 1) //FK 자동생성
     // @ManyToOne(fetch = FetchType.EAGER)
     private Question question;
-
+    private LocalDateTime modifyDate;
 
 }
