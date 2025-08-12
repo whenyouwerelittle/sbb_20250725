@@ -1,15 +1,16 @@
 package com.mysite.sbb.question;
-import com.mysite.sbb.user.SiteUser;
+
 import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
-
-@Entity // db
+@Entity
 @Getter
 @Setter
 public class Question {
@@ -23,13 +24,16 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @ManyToOne
+    private SiteUser author;
+
     private LocalDateTime createDate;
 
-    // @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    private LocalDateTime modifyDate;
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Answer> answerList;
 
-    @ManyToOne
-    private SiteUser author;
-    private LocalDateTime modifyDate;
+    @ManyToMany
+    Set<SiteUser> voter;
 }

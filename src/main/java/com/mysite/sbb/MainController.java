@@ -18,4 +18,10 @@ public class MainController {
     public String root() {
         return "redirect:/question/list";
     }
+
+/*    @GetMapping("/react")
+    public String react(){
+       //  return reMessage;
+    }*/
+
 }
