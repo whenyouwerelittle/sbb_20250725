@@ -1,13 +1,19 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content" class="container my-3">
     <div class="row my-3">
-        <div class="col-6">
-            <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
+        <div class="col-6" style="vertical-align:bottom;">
+            <a sec:authorize="isAuthenticated()"  th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
+            <div sec:authorize="isAnonymous()" style="color:gray;"> 질문 등록을 위해서는 로그인이 필요합니다.</div>
         </div>
+<!--
+        <input sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control"placeholder="로그인을 해주세요.">
+        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control" rows="10"></textarea>
+    -->
         <div class="col-6">
             <form>
                 <div class="input-group">
-                    <input type="text" id="search_kw" name="kw" class="form-control" th:value="${param.kw}">
+                    <input sec:authorize="isAnonymous()"  type="text" id="search_kw" name="kw" class="form-control" th:value="${param.kw}" placeholder="질문 검색에는 로그인이 필요하지 않습니다">
+                    <input sec:authorize="isAuthenticated()"  type="text" id="search_kw" name="kw" class="form-control" th:value="${param.kw}" placeholder="검색 잘해봐">
                     <button class="btn btn-outline-secondary" type="submit" id="btn_search">찾기</button>
                 </div>
             </form>
